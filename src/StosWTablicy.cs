@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Stos
 {
@@ -17,9 +13,9 @@ namespace Stos
             szczyt = -1;
         }
 
-        public T Peek => IsEmpty? throw new StosEmptyException() : tab[szczyt];
+        public T Peek => IsEmpty ? throw new StosEmptyException() : tab[szczyt];
 
-        public int Count => szczyt + 1;        
+        public int Count => szczyt + 1;
 
         public bool IsEmpty => szczyt == -1;
 
@@ -29,16 +25,16 @@ namespace Stos
         {
             if (IsEmpty)
                 throw new StosEmptyException();
-                
+
             szczyt--;
             return tab[szczyt + 1];
         }
 
         public void Push(T value)
         {
-            if( szczyt == tab.Length-1 )
+            if (szczyt == tab.Length - 1)
             {
-                Array.Resize<T>(ref tab, tab.Length * 2);
+                Array.Resize(ref tab, tab.Length * 2);
             }
 
             szczyt++;

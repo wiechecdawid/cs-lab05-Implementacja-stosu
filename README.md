@@ -15,7 +15,7 @@ W folderze `src/` znajdują się pliki:
 * `StosEmptyException.cs` - definiujący klasę wyjątku zgłaszanego, gdy stos jest pusty
 * `StosWTablicy.cs` - generyczna implementacja stosu, wykorzystująca jako _nośnik danych_ tablicę
 
-W folderze `unitTest` znajduje się plik `UnitTest1.cs`, weryfikujący poprawność implementacji stosu - w oparciu o aksjomaty oraz definicje zawarte w `IStos<T>` - na przykładzie stosu znaków (`StosWTablicy<char>`).
+W folderze `unitTest/` znajduje się plik `UnitTest1.cs`, weryfikujący poprawność implementacji stosu - w oparciu o aksjomaty oraz definicje zawarte w `IStos<T>` - na przykładzie stosu znaków (`StosWTablicy<char>`).
 
 Implementacja ta, aczkolwiek kompletna w sensie teoretycznym, pozbawiona jest funkcjonalności przeglądania zawartości stosu (nie działa pętla `foreach`, nie mamy bezpośredniego dostępu do tablicy przechowującej elementy stosu). Dostęp do jego elementów możliwy jest dopiero po jego wyeksportowaniu do tablicy `T[]`.
 
