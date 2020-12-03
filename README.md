@@ -34,7 +34,7 @@ Implementacja ta, aczkolwiek kompletna w sensie teoretycznym, pozbawiona jest fu
 
     Dodaj odpowiednie _unit testy_ weryfikujące poprawność implementacji indeksera.
 
-4. Zaimplementuj w klasie `StosWTablicy<T>` mechanizm umożliwiający przeglądanie w trybie _read only_ elementów stosu za pomocą pętli `foreach`. Realizuje się to poprzez implementację interfejsu `IEnumerable`. Przyjmij, że elementy będą przeglądane w kolejności od pierwszego wstawionego na stos do ostatniego:
+4. Zaimplementuj w klasie `StosWTablicy<T>` mechanizm umożliwiający przeglądanie w trybie _read only_ elementów stosu za pomocą pętli `foreach`. Realizuje się to poprzez implementację interfejsu `IEnumerable<T>`. Przyjmij, że elementy będą przeglądane w kolejności od pierwszego wstawionego na stos do ostatniego:
 
     1. zrealizuj to, tworząc własny iterator implementujący `IEnumerator<T>` "od zera" - w formie prywatnej klasy wewnętrznej,
 
