@@ -79,6 +79,30 @@ namespace UnitTestProjectStos
 
             char c = stos.Peek;
         }
+
+        [TestMethod]
+        public void TrimExcess_ReturnsOneEmptySpace()
+        {
+            var s = new StosWTablicy<int>();
+
+            for (int i = 0; i < 9; i++)
+                s.Push(i);
+
+            s.TrimExcess();
+
+            Assert.AreEqual(10, s.TotalLength);
+        }
+
+        [TestMethod]
+        public void Indexer_GetsCorrectMember()
+        {
+            var s = new StosWTablicy<int>();
+
+            for (int i = 1; i < 6; i++)
+                s.Push(i);
+
+            Assert.AreEqual(5, s[4]);
+        }
     }
 
 }

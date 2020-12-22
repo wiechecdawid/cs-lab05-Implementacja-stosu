@@ -1,19 +1,21 @@
 ﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 
 namespace Stos
 {
     public class StosWTablicy<T> : IStos<T>
     {
-        private T[] tab;
+        private T[] arr;
         private int current = -1;
 
         public StosWTablicy(int size = 10)
         {
-            tab = new T[size];
+            arr = new T[size];
             current = -1;
         }
 
-        public T Peek => IsEmpty ? throw new StosEmptyException() : tab[current];
+        public T Peek => IsEmpty ? throw new StosEmptyException() : arr[current];
 
         public int Count => current + 1;
 
@@ -27,18 +29,18 @@ namespace Stos
                 throw new StosEmptyException();
 
             current--;
-            return tab[current + 1];
+            return arr[current + 1];
         }
 
         public void Push(T value)
         {
-            if (current == tab.Length - 1)
+            if (current == arr.Length - 1)
             {
-                Array.Resize(ref tab, tab.Length * 2);
+                Array.Resize(ref arr, arr.Length * 2);
             }
 
             current++;
-            tab[current] = value;
+            arr[current] = value;
         }
 
         public T[] ToArray()
@@ -48,7 +50,7 @@ namespace Stos
             //poprawnie:
             T[] temp = new T[current + 1];
             for (int i = 0; i < temp.Length; i++)
-                temp[i] = tab[i];
+                temp[i] = arr[i];
             return temp;
         }
 
@@ -56,12 +58,44 @@ namespace Stos
         {
             if(current > -1)
             {
-                T[] temp = new T[current + (int)Math.Ceiling((decimal)current * 1 / 10)];
+                T[] temp = new T[current + 1 + (int)Math.Ceiling(((decimal)current + 1) * 1 / 10)];
 
                 for (int i = 0; i < temp.Length; i++)
-                    temp[i] = tab[i];
+                    temp[i] = arr[i];
 
-                tab = temp;
+                arr = temp;
+            }
+        }
+
+        public T this[int index] { get => arr[index]; }
+
+        public int TotalLength { get => arr.Length; }
+
+        private class StackEnum<T> : IEnumerator<T>
+        {
+            T[] _objects;
+            private int _index = -1;
+            public StackEnum(T[] objects)
+            {
+                _objects = objects;
+            }
+            public T Current => throw new NotImplementedException();
+
+            object IEnumerator.Current => Current;
+
+            public void Dispose()
+            {
+                throw new NotImplementedException();
+            }
+
+            public bool MoveNext()
+            {
+                throw new NotImplementedException();
+            }
+
+            public void Reset()
+            {
+                throw new NotImplementedException();
             }
         }
     }
