@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace Stos
 {
-    public class StosWTablicy<T> : IStos<T>
+    public class StosWTablicy<T> : IStos<T>, IEnumerable<T>
     {
         private T[] arr;
         private int current = -1;
@@ -67,11 +67,22 @@ namespace Stos
             }
         }
 
+        public IEnumerator<T> GetEnumerator()
+        {
+            return new StackEnum(arr);
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return GetEnumerator();
+        }
+
         public T this[int index] { get => arr[index]; }
 
         public int TotalLength { get => arr.Length; }
 
-        private class StackEnum<T> : IEnumerator<T>
+
+        private class StackEnum : IEnumerator<T>
         {
             T[] _objects;
             private int _index = -1;
@@ -79,23 +90,30 @@ namespace Stos
             {
                 _objects = objects;
             }
-            public T Current => throw new NotImplementedException();
-
-            object IEnumerator.Current => Current;
-
-            public void Dispose()
-            {
-                throw new NotImplementedException();
+            public T Current 
+            { 
+                get
+                {
+                    try
+                    {
+                        return _objects[_index];
+                    }
+                    catch(IndexOutOfRangeException)
+                    {
+                        throw new InvalidOperationException();
+                    }
+                }
             }
 
-            public bool MoveNext()
-            {
-                throw new NotImplementedException();
-            }
+            object IEnumerator.Current { get => Current; }
+
+            public void Dispose() { }
+
+            public bool MoveNext() => ++_index < _objects.Length;
 
             public void Reset()
             {
-                throw new NotImplementedException();
+                _index = -1;
             }
         }
     }
