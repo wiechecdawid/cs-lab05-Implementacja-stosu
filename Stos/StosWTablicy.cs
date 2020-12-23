@@ -71,10 +71,23 @@ namespace Stos
         {
             return new StackEnum(arr);
         }
+        
+        //lub:
+        //public IEnumerator<T> GetEnumerator()
+        //{
+        //    for (int i = 0; i < arr.Length; i++)
+        //        yield return arr[i];
+        //}
 
         IEnumerator IEnumerable.GetEnumerator()
         {
             return GetEnumerator();
+        }
+
+        public IEnumerable<T> ReverseIterate()
+        {
+            for (int i = arr.Length - 1; i >= 0; i--)
+            yield return arr[i];
         }
 
         public T this[int index] { get => arr[index]; }

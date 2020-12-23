@@ -10,8 +10,13 @@ namespace Stos
             s.Push("km");
             s.Push("aa");
             s.Push("xx");
-            foreach (var x in s.ToArray())
+
+            foreach (var x in s)
                 Console.WriteLine(x);
+
+            var rs = s.ReverseIterate();
+            foreach (var r in rs)
+                Console.WriteLine(r);
 
             Console.WriteLine();
         }
