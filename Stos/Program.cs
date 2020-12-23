@@ -18,7 +18,12 @@ namespace Stos
             foreach (var r in rs)
                 Console.WriteLine(r);
 
-            Console.WriteLine();
+            var sa = s.ToArray();
+            sa[0] = "bb";
+            Console.WriteLine(sa[0]);
+
+            var sroa = s.ToArrayReadOnly();
+            // sroa[0] = "11"; - compilation error
         }
     }
 }

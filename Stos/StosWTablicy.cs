@@ -94,6 +94,12 @@ namespace Stos
 
         public int TotalLength { get => arr.Length; }
 
+        public System.Collections.ObjectModel.ReadOnlyCollection<T> ToArrayReadOnly()
+        {
+            return Array.AsReadOnly(arr);
+        }
+
+
 
         private class StackEnum : IEnumerator<T>
         {
