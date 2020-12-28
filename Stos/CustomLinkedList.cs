@@ -19,7 +19,7 @@ namespace Stos
             get => _current > 0 ? this[_current] : _head;
         }
 
-        int Count => _current + 1;
+        public int Count => _current + 1;
 
         int ICollection<T>.Count => Count;
 
@@ -67,11 +67,14 @@ namespace Stos
                 }
                 _current++;
             }
+
+            throw new InvalidOperationException();
         }
         
         public void Clear()
         {
-            _head = null;
+            if(!IsReadOnly)
+                _head = null;
         }
 
         public bool Contains(T item)
@@ -120,6 +123,9 @@ namespace Stos
 
         public bool Remove(T item)
         {
+            if (IsReadOnly)
+                throw new InvalidOperationException("The list is readonly");
+
             var c = EqualityComparer<T>.Default;
             var node = _head;
 
@@ -133,6 +139,7 @@ namespace Stos
 
             while(node.Next != null)
             {
+                node = node.Next;
                 if(c.Equals(node.Next.Head, item))
                 {
                     node.Next = node.Next.Next;
